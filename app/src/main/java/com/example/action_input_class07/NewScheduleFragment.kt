@@ -1,6 +1,7 @@
 package com.example.action_input_class07
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.view.SupportActionModeWrapper
+import androidx.navigation.fragment.findNavController
 import com.example.action_input_class07.customdiaglogs.DatePickerFragment
 import com.example.action_input_class07.customdiaglogs.TimePickerFragment
 import com.example.action_input_class07.databinding.FragmentNewScheduleBinding
@@ -37,7 +40,34 @@ class NewScheduleFragment : Fragment() {
             }.show(childFragmentManager,null)
 
         }
+        binding.saveBtn.setOnClickListener {
+            saveInfo()
+        }
         return binding.root
+    }
+
+    private fun saveInfo() {
+        val name = binding.busNameET.text.toString()
+        val date = binding.showDateTV.text.toString()
+        val time = binding.showTimeTV.text.toString()
+        //TODO: validate this info
+        if(from == to){
+            Toast.makeText(requireActivity(), "Starting and Destination can not be same!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val schedule = BusSchedule(
+            id = System.currentTimeMillis(),
+            busName = name,
+            busType = busType,
+            departureDate = date,
+            departureTime = time,
+            fromCity = from,
+            toCity = to
+        )
+        scheduleList.add(schedule)
+        //findNavController().popBackStack() // to pop the current fragments
+        findNavController().navigate(R.id.action_newScheduleFragment_to_scheduleListFragment)
+        Log.d("NewScheduleFragment","saveInfo: $schedule")
     }
 
     private fun initBusTypeRG() {
