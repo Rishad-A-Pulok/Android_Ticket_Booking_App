@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="schedule"
             type="com.example.action_input_class07.BusSchedule" />
@@ -15,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        app:contentPadding="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,9 +23,10 @@
             android:layout_margin="10sp">
 
             <TextView
-                android:id="@+id/busNameTV"
+                android:id="@+id/rowBusName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -36,27 +37,28 @@
                 android:text="@{schedule.busName}"/>
 
             <TextView
-                android:id="@+id/viewFromToTV"
+                android:id="@+id/rowFromToTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/busNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/rowBusName"
                 tools:text="Dhaka-Cox's Bazar"
-                android:text="@{schedule.fromCity - schedule.toCity}"/>
+                android:text="@{schedule.fromCity+ `-` +schedule.toCity}"/>
 
             <TextView
-                android:id="@+id/viewTimeTV"
+                android:id="@+id/rowTimeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewFromToTV"
+                app:layout_constraintTop_toBottomOf="@+id/rowFromToTV"
                 tools:text="08:30"
                 android:text="@{schedule.departureTime}"/>
 
             <TextView
-                android:id="@+id/busTypeTV"
+                android:id="@+id/rowBusTypeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="264dp"
@@ -67,7 +69,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/viewTimeTV"
+                app:layout_constraintStart_toEndOf="@+id/rowTimeTV"
                 tools:text="Business"
                 android:text="@{schedule.busType}"/>
 

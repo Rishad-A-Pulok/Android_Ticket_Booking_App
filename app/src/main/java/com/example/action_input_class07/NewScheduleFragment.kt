@@ -67,7 +67,7 @@ class NewScheduleFragment : Fragment() {
         scheduleList.add(schedule)
         //findNavController().popBackStack() // to pop the current fragments
         findNavController().navigate(R.id.action_newScheduleFragment_to_scheduleListFragment)
-        Log.d("NewScheduleFragment","saveInfo: $schedule")
+        //Log.d("NewScheduleFragment","saveInfo: $schedule")
     }
 
     private fun initBusTypeRG() {
