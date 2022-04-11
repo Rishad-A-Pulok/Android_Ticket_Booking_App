@@ -11,12 +11,14 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.view.SupportActionModeWrapper
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.action_input_class07.customdiaglogs.DatePickerFragment
 import com.example.action_input_class07.customdiaglogs.TimePickerFragment
 import com.example.action_input_class07.databinding.FragmentNewScheduleBinding
 
 class NewScheduleFragment : Fragment() {
+    private val vm: ScheduleViewModel by activityViewModels()
     private lateinit var binding: FragmentNewScheduleBinding
     private var from = "Dhaka"
     private var to = "Dhaka"
@@ -64,10 +66,8 @@ class NewScheduleFragment : Fragment() {
             fromCity = from,
             toCity = to
         )
-        scheduleList.add(schedule)
-        //findNavController().popBackStack() // to pop the current fragments
-        findNavController().navigate(R.id.action_newScheduleFragment_to_scheduleListFragment)
-        //Log.d("NewScheduleFragment","saveInfo: $schedule")
+        vm.addSchedule(schedule)
+        findNavController().popBackStack() // to pop the current fragments
     }
 
     private fun initBusTypeRG() {
